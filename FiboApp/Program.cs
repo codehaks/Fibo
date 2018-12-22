@@ -17,11 +17,11 @@ namespace FiboAspApp
               //    Console.WriteLine($"{i} => {(long)(duration).TotalMilliseconds} - {f}");
               //}
 
-            
-            var list = new List<long>() { 0, 1 };
+
+            var list = new List<long>();// { 0, 1 };
             //Fibonacci2(ref list, 30);
 
-            for (long i = 2; i < 50; i++)
+            for (long i = 0; i < 50; i++)
             {
                 var start = DateTime.Now;
                 var f = Fibonacci2(ref list,i);
@@ -42,9 +42,18 @@ namespace FiboAspApp
           }
        }
 
+
         static long Fibonacci2(ref List<long> fiboList, long number)
         {
-            var result = fiboList[fiboList.Count - 1]+fiboList[fiboList.Count-2];
+            long result = 0;
+
+            if (number == 0) { result= 0; }
+            else if (number == 1) { result = 1; }
+            else
+            {
+                result = fiboList[fiboList.Count - 1] + fiboList[fiboList.Count - 2];
+            }
+            
             fiboList.Add(result);
             return result;
         }
