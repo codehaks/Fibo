@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FiboAspApp
 {
@@ -6,13 +8,25 @@ namespace FiboAspApp
     {
         static void Main(string[] args)
         {
-            Fibonacci(30); //warmup
-            for (long i = 10; i < 50; i += 5)
+            ; //warmup
+              //for (long i = 10; i < 50; i += 5)
+              //{
+              //    var start = DateTime.Now;
+              //    var f=Fibonacci(i);
+              //    var duration = DateTime.Now - start;
+              //    Console.WriteLine($"{i} => {(long)(duration).TotalMilliseconds} - {f}");
+              //}
+
+            
+            var list = new List<long>() { 0, 1 };
+            //Fibonacci2(ref list, 30);
+
+            for (long i = 2; i < 50; i++)
             {
                 var start = DateTime.Now;
-                var f=Fibonacci(i);
+                var f = Fibonacci2(ref list,i);
                 var duration = DateTime.Now - start;
-                Console.WriteLine($"{i}-{f} => {(long)(duration).TotalMilliseconds}");
+                Console.WriteLine($"{i} => {(long)(duration).TotalMilliseconds} - {f}");
             }
         }
 
@@ -28,18 +42,25 @@ namespace FiboAspApp
           }
        }
 
+        static long Fibonacci2(ref List<long> fiboList, long number)
+        {
+            var result = fiboList[fiboList.Count - 1]+fiboList[fiboList.Count-2];
+            fiboList.Add(result);
+            return result;
+        }
+
         // static long Fibonacci(long n)
         // {
-            // long a = 0;
-            // long b = 1;
-            
-            // for (long i = 0; i < n; i++)
-            // {
-                // long temp = a;
-                // a = b;
-                // b = temp + b;
-            // }
-            // return a;
+        // long a = 0;
+        // long b = 1;
+
+        // for (long i = 0; i < n; i++)
+        // {
+        // long temp = a;
+        // a = b;
+        // b = temp + b;
+        // }
+        // return a;
         // }
     }
 }
